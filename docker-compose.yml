@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # MongoDB
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app-network
+
+  # Redis cache
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - app-network
+    command: redis-server --appendonly yes
+    restart: always
+
+  # Node.js backend
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+      - redis
+    env_file:
+      - ./server/.env
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/mern-app
+      - REDIS_URL=redis://redis:6379
+      - PORT=5000
+      - ENABLE_REDIS=true
+    networks:
+      - app-network
+
+  # React frontend
+  client:
+    build: ./client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+    networks:
+      - app-network
+
+  # Python agent
+  python-agent:
+    build: ./server/python-agent
+    ports:
+      - "8000:8000"
+    depends_on:
+      - server
+    env_file:
+      - ./server/python-agent/.env
+    environment:
+      - PYTHON_PORT=8000
+      - NODEJS_API_URL=http://server:5000/api/parse-task
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  redis_data: 

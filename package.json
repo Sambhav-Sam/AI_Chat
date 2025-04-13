@@ -1,0 +1,20 @@
+{
+  "name": "ai-web-automation",
+  "version": "1.0.0",
+  "description": "AI-powered web automation with React frontend and Node.js backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "cd server && npm run start",
+    "client": "cd client && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
+    "build": "cd client && npm run build",
+    "docker-build": "docker-compose build",
+    "docker-up": "docker-compose up",
+    "docker-down": "docker-compose down"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

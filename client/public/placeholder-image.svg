@@ -1,0 +1,8 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#242424"/>
+  <rect x="10" y="10" width="280" height="180" stroke="#646cff" stroke-width="2" fill="none" rx="5"/>
+  <text x="150" y="85" font-family="Arial" font-size="16" fill="#646cff" text-anchor="middle">Screenshot Not Available</text>
+  <text x="150" y="115" font-family="Arial" font-size="12" fill="#888888" text-anchor="middle">This is a simulated demo</text>
+  <path d="M90,60 L120,90 L90,120" stroke="#646cff" stroke-width="2" fill="none"/>
+  <path d="M210,60 L180,90 L210,120" stroke="#646cff" stroke-width="2" fill="none"/>
+</svg> 
