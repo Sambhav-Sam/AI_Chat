@@ -1,0 +1,23 @@
+{
+  "name": "react-website-automation",
+  "version": "1.0.0",
+  "description": "Playwright automation tool for React websites",
+  "main": "automateWebsites.js",
+  "type": "module",
+  "scripts": {
+    "example": "node example.js",
+    "integration": "node -e \"import('./integration.js').then(mod => mod.runIntegrationExample())\"",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "automation",
+    "playwright",
+    "react",
+    "testing"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.51.1"
+  }
+}
